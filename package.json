@@ -1,0 +1,25 @@
+{
+  "name": "alinochka-maid",
+  "version": "0.0.1-alpha.1",
+  "description": "My twitch bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simply-kel/alinochka-maid.git"
+  },
+  "keywords": [
+    "twitch"
+  ],
+  "author": "simply-kel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simply-kel/alinochka-maid/issues"
+  },
+  "homepage": "https://github.com/simply-kel/alinochka-maid#readme",
+  "dependencies": {
+    "tmi.js": "^1.8.5"
+  }
+}

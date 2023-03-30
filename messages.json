@@ -1,0 +1,8 @@
+{
+    "bot": "$sender, я самописная служанка для твич канала Кела",
+    "donate": "$sender, поддержать можно на DonationAlerts https://donationalerts.com/r/simplykel",
+    "boosty": "$sender, Бусти Кели тута: https://boosty.to/simply_kel",
+    "git": "$sender, GitHub Кели: https://github.com/simply-kel",
+    "site": "$sender, Келя сделал свой сайт по адресу: https://simplykel.ru",
+    "server": "$sender, Кел играет на сервере PepeLand 7"
+}

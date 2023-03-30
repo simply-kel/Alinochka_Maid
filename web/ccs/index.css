@@ -1,0 +1,26 @@
+body {
+    background-color: #000;
+    font-size: 18pt;
+    width: 100%;
+    height: 100%;
+    font-family: "Source Code Pro", monospace;
+}
+#chat {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+#chat li {
+    /* background-color: hsl(196, 58%, 93%); */
+    color: #fff;
+    box-sizing: border-box;
+    padding: 0px 0px;
+    margin-bottom: 0px;
+}
+
+#chat ul {
+    padding: 0;
+    margin: 6pt;
+    list-style-type: none;
+    list-style-position: outside;
+}

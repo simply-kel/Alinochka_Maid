@@ -25,23 +25,61 @@ const client = new tmi.Client({
 	},
 	channels: config.channels
 });
-
+const messages = require(`./messages.json`);
+const chat = {
+	count: 0,
+	messages: []
+};
 client.connect();
 
 client.on('message', (channel, tags, message, self) => {
 	// Ignore echoed messages.
+	chat.messages.push({
+		id: chat.count,
+		author: tags['display-name'],
+		username: tags.username,
+		message: message
+	})
+	chat.count++;
+	// console.log(chat.messages)
 	if (self) return;
-
-	if (message.toLowerCase() === '!сервер' || message.toLowerCase() === '!rw') {
-		// "@alca, heya!"
-		client.say(channel, `@${tags.username}, Кел играет на сервере RevolutionWorlds, о сервере можешь узнать в нашем дс сервере https://www.reworlds.net!`);
-	} else if (message.toLowerCase() === '!bot' || message.toLowerCase() === '!бот') {
-		client.say(channel, `@${tags.username}, я самописный бот служанка, мои исходники можно найти на GitHub https://github.com/simply-kel/Alinochka_Maid`)
-	} else if (message.toLowerCase() === '!donate' || message.toLowerCase() === '!донат' || message.toLowerCase() === '!донатик') {
-		client.say(channel, `@${tags.username}, Кела можно поддержать на DonationAlerts! Вот ссылачка :> https://www.donationalerts.com/r/simplykel`)
-	} else if (message.toLowerCase() === '!github') {
-		client.say(channel, `@${tags.username}, вот GitHub Кела: https://github.com/simply-kel`)
-	} else if (message.toLowerCase() === '!vtuber') {
-		client.say(channel, `@${tags.username}, Кел использует программу veadotube mini. https://olmewe.itch.io/veadotube-mini`)
+	const command = message.toLowerCase().replace("!", "");
+	if(messages[command]){
+		client.say(channel, messages[command].replace("$sender", `@${tags.username}`))
 	}
 });
+
+// WEB
+const exp = require("express");
+const port = 34290;
+const web = exp();
+web.use('/', exp.static('web'))
+web.all('/chat', async(req, res)=>{
+	res.json(chat);
+})
+web.all('/bot', async(req, res)=>{
+	res.json({
+		username: `${client.getUsername()}`,
+		display: `${config.username}`,
+		channels: client.getChannels()
+	})
+})
+// web.all('/stat', async(req, res)=>{
+// 	res.json({count: client.listenerCount(), ping: client.ping()})
+// })
+web.use(async function (req, res, next) {
+	res.status(404);
+	res.json({
+	  error: {
+		code: 404,
+		codename: "Not found",
+		message: "Method not found"
+	  }
+	})
+	return;
+  });
+const http = require('http'); // Используется HTTP протокол
+const server = http.createServer({}, web);
+server.listen(port, async () => {
+  console.log(`API Был успешно запущен!`);
+})

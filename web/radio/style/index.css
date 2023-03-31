@@ -1,0 +1,15 @@
+body {
+    /* background-color: rgb(153, 255, 0); */
+    font-family: "Source Code Pro", monospace;
+}
+.overlay {
+    padding: 8pt;
+    max-width: 100%;
+    width: max-content;
+    color: #fff;
+    background-color: #000000d8;
+    border: dashed 0.20pc rgba(219, 219, 219, 0.831);
+}
+.overlay h1, .overlay h2, .overlay h3{
+    margin: 6pt;
+}
